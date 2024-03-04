@@ -19,7 +19,7 @@ cords* createCords(int yIndex, int xIndex) {
 int main() {
     // --------------------------------------- //
     int fogPercentage = 20;
-    int wallsPercentage = 75;
+    int wallsPercentage = 20;
     int pacManMode = 0;
 
     int sizeY = 10;
@@ -63,8 +63,8 @@ int main() {
                     currentChar = '.';
 
                     if (numberOfPaths == pathLength) {
-                        pathLength = numberOfPaths * 2;
-                        paths = realloc(paths, pathLength);
+                        pathLength *= 2;
+                        paths = realloc(paths, pathLength * sizeof(cords*));
                     }
 
                     paths[numberOfPaths++] = createCords(y, x);
