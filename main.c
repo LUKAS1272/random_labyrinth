@@ -38,9 +38,8 @@ int main() {
     srand(time(NULL));
 
     char** field = malloc(sizeY * sizeof(char*));
-    for (int i = 0; i < sizeY; i++) {
+    for (int i = 0; i < sizeY; i++)
         field[i] = malloc(sizeX * sizeof(char));
-    }
     
     int numberOfPaths = 0;
     int pathLength = 1;
@@ -50,7 +49,7 @@ int main() {
         for (int x = 0; x < sizeX; x++) {
             char currentChar = 'n';
 
-            if (y == 0 || y == sizeY - 1 || x == 0 || x == sizeX - 1) {
+            if ((y == 0 || y == sizeY - 1 || x == 0 || x == sizeX - 1) && !pacManMode) {
                 currentChar = '#';
             } else {
                 int random = rand() % 100;
@@ -70,11 +69,8 @@ int main() {
                     paths[numberOfPaths++] = createCords(y, x);
                 }
             }
-
             field[y][x] = currentChar;
-            // printf("%c", field[y][x]);
         }
-        // printf("\n");
     }
 
     if (numberOfPaths == 0) {
@@ -87,10 +83,8 @@ int main() {
             printf("%c", field[y][x]);
         printf("\n");
     }
-    
 
     printf("-\n");
-
     for (int i = 0; i < numberOfProblems; i++) {
         cords* start = paths[rand() % numberOfPaths];
         cords* end = paths[rand() % numberOfPaths];
@@ -98,6 +92,5 @@ int main() {
         printf("%d %d %d %d\n", start->y, start->x, end->y, end->x);
     }
     
-
     return 0;
 }
